@@ -5,11 +5,11 @@ import { Box, BoxProps, SxProps } from '@mui/material';
 
 // ----------------------------------------------------------------------
 
-interface Props extends BoxProps {
+export type IconProps = BoxProps & {
   sx?: SxProps;
   icon: IconifyIcon | string;
-}
+};
 
-export default function Icon({ icon, sx, ...other }: Props) {
+export function Icon({ icon, sx, ...other }: IconProps) {
   return <Box component={Iconify} icon={icon} sx={{ ...sx }} {...other} />;
 }

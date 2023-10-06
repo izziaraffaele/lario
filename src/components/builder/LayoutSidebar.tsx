@@ -1,5 +1,5 @@
 import { styled } from '@mui/material/styles';
-import Icon from '../Icon';
+import { Icon } from '../Icon';
 import { Box } from '@mui/material';
 
 const RootStyle = styled('div')(({ theme }) => ({
@@ -34,10 +34,17 @@ const Tool = styled('div')(({ theme }) => ({
 }));
 
 export function LayoutSidebar() {
+  const handleDragStart =
+    (nodeType: string): React.DragEventHandler =>
+    (event) => {
+      event.dataTransfer.setData('application/reactflow', nodeType);
+      event.dataTransfer.effectAllowed = 'move';
+    };
+
   return (
     <RootStyle>
       <Box px={1}>
-        <SidebarItem>
+        <SidebarItem onDragStart={handleDragStart('welcome-screen')} draggable>
           <Tool>
             <Icon fontSize={24} icon="octicon:typography-16" />
           </Tool>

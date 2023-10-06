@@ -16,10 +16,14 @@
     "@iconify/react": "^4.1.1",
     "@mui/icons-material": "latest",
     "@mui/material": "latest",
+    "@quillforms/react-renderer-utils": "^5.9.1",
+    "@quillforms/renderer-core": "^5.7.0",
+    "lodash": "^4.17.21",
     "next": "latest",
     "react": "latest",
     "react-dom": "latest",
-    "reactflow": "^11.9.2"
+    "reactflow": "11.9.2",
+    "zustand": "^4.4.1"
   },
   "devDependencies": {
     "@types/node": "latest",
