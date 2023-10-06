@@ -13,11 +13,13 @@
     "@emotion/cache": "latest",
     "@emotion/react": "latest",
     "@emotion/styled": "latest",
+    "@iconify/react": "^4.1.1",
     "@mui/icons-material": "latest",
     "@mui/material": "latest",
     "next": "latest",
     "react": "latest",
-    "react-dom": "latest"
+    "react-dom": "latest",
+    "reactflow": "^11.9.2"
   },
   "devDependencies": {
     "@types/node": "latest",
