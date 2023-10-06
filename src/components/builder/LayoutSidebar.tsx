@@ -1,6 +1,7 @@
 import { styled } from '@mui/material/styles';
 import { Icon } from '../Icon';
-import { Box } from '@mui/material';
+import { Stack } from '@mui/material';
+import { builderTypes } from '.';
 
 const RootStyle = styled('div')(({ theme }) => ({
   height: '100%',
@@ -43,13 +44,19 @@ export function LayoutSidebar() {
 
   return (
     <RootStyle>
-      <Box px={1}>
-        <SidebarItem onDragStart={handleDragStart('welcome-screen')} draggable>
-          <Tool>
-            <Icon fontSize={24} icon="octicon:typography-16" />
-          </Tool>
-        </SidebarItem>
-      </Box>
+      <Stack direction="column" spacing={1} px={1}>
+        {builderTypes.map(({ nodeType, icon }) => (
+          <SidebarItem
+            key={nodeType.key}
+            onDragStart={handleDragStart(nodeType.key)}
+            draggable
+          >
+            <Tool>
+              {typeof icon === 'string' ? <Icon icon={icon} /> : icon}
+            </Tool>
+          </SidebarItem>
+        ))}
+      </Stack>
     </RootStyle>
   );
 }

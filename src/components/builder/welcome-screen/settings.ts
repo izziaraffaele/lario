@@ -5,8 +5,7 @@ import { makeNodeType } from '@/core/form-builder';
 
 const nodeType = makeNodeType('welcome-screen', {
   attributes: {
-    label: 'Welcome to our survey',
-    description: 'This is just a description',
+    label: 'Welcome',
     attachment: {
       type: 'image',
       url: 'https://quillforms.com/wp-content/uploads/2022/01/4207-ai-1.jpeg',

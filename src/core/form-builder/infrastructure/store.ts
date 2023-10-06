@@ -1,16 +1,34 @@
 import { create } from 'zustand';
-import { applyEdgeChanges, applyNodeChanges, addEdge } from 'reactflow';
+import {
+  applyEdgeChanges,
+  applyNodeChanges,
+  addEdge,
+  NodeChange,
+  Node,
+} from 'reactflow';
 
 import { FormNode, FormBuilderStore, FormBuilderState } from '../types';
 import { DEFAULT_STATE, DEFAULT_POSITION } from '../constants';
 import { fromBlock, getDefaultLayout } from '../node';
 import { getDefaultEdges } from '../edge';
 
+const isSelectChange = (change: NodeChange) =>
+  change.type === 'select' && change.selected === true;
+
+const deselectAll = (nodes: Node[]) =>
+  nodes.map((n) => ({ ...n, selected: false }));
+
 export const createStore = (initialState: FormBuilderState = DEFAULT_STATE) =>
   create<FormBuilderStore>((set, get) => ({
     nodes: getDefaultLayout(initialState.nodes),
     edges: initialState.edges || getDefaultEdges(initialState.nodes),
     onNodesChange: (changes) => {
+      let nodes = get().nodes;
+
+      if (changes.some(isSelectChange)) {
+        nodes = deselectAll(nodes);
+      }
+
       set({
         nodes: applyNodeChanges(changes, get().nodes) as FormNode[],
       });

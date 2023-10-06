@@ -65,7 +65,7 @@ export default function BuilderPage() {
   const onNodeClick = useCallback<NodeMouseHandler>(
     (e, node) => {
       reactFlowInstance?.setCenter(node.position.x + 80, node.position.y, {
-        zoom: undefined,
+        zoom: reactFlowInstance.getZoom(),
       });
     },
     [reactFlowInstance]
