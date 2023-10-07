@@ -3,15 +3,19 @@ import { useMemo } from 'react';
 import { Form } from '@quillforms/renderer-core';
 import '@quillforms/renderer-core/build-style/style.css';
 
-import { registerCoreBlocks } from '@quillforms/react-renderer-utils'; // eslint-disable-line
 import { useFormBuilderStore } from '@/hooks/useFormBuiler';
 import { getFormBlocks } from '@/core/form-builder';
+import {
+  registerBlocks,
+  connectWalletBlock,
+  workflowBlock,
+} from '@/components/quillform-blocks';
 
 let registered = false;
 
 if (!registered) {
   registered = true;
-  registerCoreBlocks();
+  registerBlocks([connectWalletBlock, workflowBlock]);
 }
 
 export default function BuilderPreviewPage() {
@@ -20,11 +24,11 @@ export default function BuilderPreviewPage() {
     () => ({ blocks: getFormBlocks({ nodes, edges }) }),
     [nodes, edges]
   );
-
+  console.log(formObj);
   return (
     <Form
       applyLogic={false}
-      formObj={formObj}
+      formObj={{ ...formObj }}
       formId={1}
       onSubmit={(
         data,

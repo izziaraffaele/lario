@@ -1,4 +1,5 @@
 import { makeNodeType } from '@/core/form-builder';
+import { makeWorkflow } from '@/hooks/useWorkflow';
 
 const welcomeScreen = makeNodeType('welcome-screen', 'octicon:home-16', {
   attributes: {
@@ -17,9 +18,11 @@ const connectWallet = makeNodeType('connect-wallet', 'ion:wallet-outline', {
   },
 });
 
-const web3Gate = makeNodeType('web3-gate', 'octicon:shield-lock-16', {
+const web3Gate = makeNodeType('workflow', 'octicon:shield-lock-16', {
   attributes: {
+    required: true,
     label: 'Web3 gate',
+    workflow: makeWorkflow({ steps: [] }),
   },
 });
 

@@ -3,11 +3,14 @@ import { useFormBuilderStore } from '@/hooks/useFormBuiler';
 import { FormProvider } from '@/components/form';
 
 import { Button, Stack, TextField } from '@mui/material';
+import { styled } from '@mui/material/styles';
 import { FormNode } from '@/core/form-builder';
+import { WorkflowStepBuilder } from '../WorkflowStepBuilder';
 
 type FormValuesProps = {
   label: string;
   description?: string;
+  workflow?: string;
 };
 
 export type FormNodePanelProps<T extends FormNode = FormNode> = Pick<
@@ -19,6 +22,7 @@ export type FormNodePanelProps<T extends FormNode = FormNode> = Pick<
 
 export function FormNodePanel({
   id,
+  type,
   data,
 }: React.PropsWithChildren<FormNodePanelProps>) {
   const { updateNode } = useFormBuilderStore();
@@ -32,10 +36,14 @@ export function FormNodePanel({
   const onSubmit = (newAttributes: FormValuesProps) => {
     updateNode(id, { ...data.attributes, ...newAttributes });
   };
-
   return (
     <FormProvider methods={methods} onSubmit={methods.handleSubmit(onSubmit)}>
-      <Stack direction="column" spacing={2}>
+      <Stack
+        direction="column"
+        spacing={2}
+        flex={1}
+        sx={{ overflow: 'scroll', py: 2 }}
+      >
         <Controller
           name="label"
           control={methods.control}
@@ -50,6 +58,15 @@ export function FormNodePanel({
             <TextField label="Description" multiline rows={3} {...field} />
           )}
         />
+
+        {type === 'workflow' && (
+          <Controller
+            name="workflow"
+            control={methods.control}
+            render={({ field }) => <WorkflowStepBuilder />}
+          />
+        )}
+
         <Button type="submit" variant="contained" size="small" color="primary">
           Save
         </Button>

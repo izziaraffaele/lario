@@ -1,6 +1,6 @@
 import { FormBuilderStore } from '@/core/form-builder';
 import { useFormBuilderStore } from '@/hooks/useFormBuiler';
-import { Box, ListItemText, Paper, PaperProps } from '@mui/material';
+import { Box, ListItemText, Paper, PaperProps, Stack } from '@mui/material';
 import { styled } from '@mui/material/styles';
 import React, { useMemo } from 'react';
 import { FormNodePanel } from './FormNodePanel';
@@ -17,6 +17,7 @@ const StyleRoot = styled(Paper, {
   top: 0,
   bottom: 0,
   right: 0,
+  overflow: 'scroll',
   width: DRAWER_WIDTH,
   transition: theme.transitions.create('transform'),
   transform: `translateX(${open ? 0 : DRAWER_WIDTH}px)`,
@@ -36,23 +37,20 @@ export function LayoutDrawer() {
   return (
     <StyleRoot elevation={16} open={Boolean(selectedNode)}>
       {selectedNode && (
-        <>
-          <Box px={3} pt={2} pb={0}>
-            <ListItemText
-              primary={nodeType?.label}
-              primaryTypographyProps={{ variant: 'h6' }}
-              secondary={nodeType?.description}
-            />
-          </Box>
-          <Box px={3} py={2}>
-            <FormNodePanel
-              key={selectedNode.id}
-              data={selectedNode.data}
-              id={selectedNode.id}
-              onSave={() => {}}
-            />
-          </Box>
-        </>
+        <Stack px={3} py={2} direction="column" spacing={2}>
+          <ListItemText
+            primary={nodeType?.label}
+            primaryTypographyProps={{ variant: 'h6' }}
+            secondary={nodeType?.description}
+          />
+          <FormNodePanel
+            key={selectedNode.id}
+            data={selectedNode.data}
+            id={selectedNode.id}
+            type={selectedNode.type}
+            onSave={() => {}}
+          />
+        </Stack>
       )}
     </StyleRoot>
   );

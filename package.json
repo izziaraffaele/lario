@@ -10,6 +10,7 @@
     "post-update": "echo \"codesandbox preview only, need an update\" && yarn upgrade --latest"
   },
   "dependencies": {
+    "@dataverse/dataverse-connector": "^1.0.28",
     "@emotion/cache": "latest",
     "@emotion/react": "latest",
     "@emotion/styled": "latest",
@@ -18,12 +19,16 @@
     "@mui/material": "latest",
     "@quillforms/react-renderer-utils": "^5.9.1",
     "@quillforms/renderer-core": "^5.7.0",
+    "@rainbow-me/rainbowkit": "^1.0.11",
     "lodash": "^4.17.21",
+    "moralis": "^2.23.1",
     "next": "latest",
     "react": "latest",
     "react-dom": "latest",
     "react-hook-form": "^7.47.0",
     "reactflow": "11.9.2",
+    "viem": "^1.15.4",
+    "wagmi": "^1.4.3",
     "zustand": "^4.4.1"
   },
   "devDependencies": {
