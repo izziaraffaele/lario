@@ -4,7 +4,12 @@ import { styled } from '@mui/material/styles';
 import { Tab, Tabs, Toolbar } from '@mui/material';
 // utils
 import cssStyles from '@/utils/cssStyles';
-import { useSearchParams, useRouter, usePathname } from 'next/navigation';
+import {
+  useSearchParams,
+  useRouter,
+  usePathname,
+  useParams,
+} from 'next/navigation';
 // ----------------------------------------------------------------------
 
 const RootStyle = styled(Toolbar)(({ theme }) => ({
@@ -23,22 +28,21 @@ const RootStyle = styled(Toolbar)(({ theme }) => ({
 // ----------------------------------------------------------------------
 
 export function LayoutHeader() {
+  const params = useParams<{ formId: string }>();
   const pathname = usePathname();
   const searchParams = useSearchParams();
   const router = useRouter();
-  const tab = searchParams.get('tab') || 'build';
+  const tab = pathname.split('/').pop();
 
   return (
     <RootStyle>
       <Tabs
         value={tab}
         onChange={(e, value) => {
-          const newSearchParams = new URLSearchParams(searchParams);
-          newSearchParams.set('tab', value);
-          router.push(`${pathname}?${newSearchParams}`);
+          router.push(`/builder/${params.formId}/${value}`);
         }}
       >
-        <Tab label="Build" value="build" />
+        <Tab label="Build" value="logic" />
         <Tab label="Preview" value="preview" />
       </Tabs>
     </RootStyle>

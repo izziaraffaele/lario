@@ -33,7 +33,6 @@ export type FormNodeTypeItemProps = FormNodeToolbarProps & {
 
 export const FormNodeTypeItem = forwardRef(
   ({ type, label, icon, collapsed, ...others }: FormNodeTypeItemProps, ref) => {
-    console.log(label, icon, type);
     return (
       <StyleRoot {...others} ref={ref as any}>
         <StyleIcon>

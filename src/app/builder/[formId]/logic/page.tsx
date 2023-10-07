@@ -25,7 +25,7 @@ const nodeTypes: NodeTypes = {
 let nodeId = 0;
 const getNodeId = () => `node-${nodeId++}`;
 
-function BuildTab() {
+export default function BuilderLogicPage() {
   const { nodes, edges, onNodesChange, onEdgesChange, onConnect, addNode } =
     useFormBuilderStore();
 
@@ -94,13 +94,4 @@ function BuildTab() {
       </ReactFlow>
     </div>
   );
-}
-
-function PreviewTab() {
-  return null;
-}
-
-export default function BuilderPate() {
-  const searchParams = useSearchParams();
-  return searchParams.get('tab') === 'preview' ? <PreviewTab /> : <BuildTab />;
 }
