@@ -49,6 +49,8 @@ export function getFormBlocks(state: FormBuilderState): FormNode['data'][] {
     return result;
   };
 
-  const blocks = buildList(startNode.id);
+  const blocks = buildList(startNode.id).filter(
+    (n) => n.name !== 'start' && n.name !== 'end'
+  );
   return blocks;
 }

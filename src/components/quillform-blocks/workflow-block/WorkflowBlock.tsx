@@ -78,7 +78,12 @@ export function WorkflowBlock(props: WorkflowBlockProps) {
               )}
             >
               {step.label}
-              <CircularProgress />
+              <div
+                className={classnames('workflow-block__step-icon', 'progress')}
+              >
+                <CircularProgress size={24} />
+              </div>
+
               <Icon
                 icon="fluent-mdl2:completed"
                 className={classnames('workflow-block__step-icon', 'success')}

@@ -8,7 +8,7 @@ import ReactFlow, {
   useReactFlow,
 } from 'reactflow';
 import { StartNode, EndNode } from '@/components/builder';
-import { useFormBuilderStore } from '@/hooks/useFormBuiler';
+import { useFormBuilderStore } from '@/hooks/useFormBuilder';
 import { nodeTypes as builderTypes } from '@/utils/nodeTypes';
 import { FormNodeItem } from '@/components/builder/FormNodeItem';
 import { useSearchParams } from 'next/navigation';

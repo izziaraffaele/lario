@@ -7,7 +7,12 @@ import {
   Node,
 } from 'reactflow';
 
-import { FormNode, FormBuilderStore, FormBuilderState } from '../types';
+import {
+  FormNode,
+  FormBuilderStore,
+  FormBuilderState,
+  FormBuilderBlock,
+} from '../types';
 import { DEFAULT_STATE, DEFAULT_POSITION } from '../constants';
 import { fromBlock, getDefaultLayout } from '../node';
 import { getDefaultEdges } from '../edge';
@@ -18,10 +23,29 @@ const isSelectChange = (change: NodeChange) =>
 const deselectAll = (nodes: Node[]) =>
   nodes.map((n) => ({ ...n, selected: false }));
 
-export const createStore = (initialState: FormBuilderState = DEFAULT_STATE) =>
-  create<FormBuilderStore>((set, get) => ({
-    nodes: getDefaultLayout(initialState.nodes),
-    edges: initialState.edges || getDefaultEdges(initialState.nodes),
+export const createStore = (initialState: FormBuilderState = DEFAULT_STATE) => {
+  const nodes = [
+    {
+      id: 'start',
+      position: { x: 0, y: 0 },
+      type: 'start',
+      data: {} as FormBuilderBlock,
+      selectable: false,
+      draggable: false,
+    },
+    ...initialState.nodes,
+    {
+      id: 'end',
+      position: { x: 0, y: 0 },
+      type: 'end',
+      data: {} as FormBuilderBlock,
+      selectable: false,
+    },
+  ];
+
+  return create<FormBuilderStore>((set, get) => ({
+    nodes: getDefaultLayout(nodes),
+    edges: initialState.edges || getDefaultEdges(nodes),
     onNodesChange: (changes) => {
       let nodes = get().nodes;
 
@@ -44,7 +68,29 @@ export const createStore = (initialState: FormBuilderState = DEFAULT_STATE) =>
       });
     },
     reset: (state) => {
-      set(state);
+      const nodes = [
+        {
+          id: 'start',
+          position: { x: 0, y: 0 },
+          type: 'start',
+          data: {} as FormBuilderBlock,
+          selectable: false,
+          draggable: false,
+        },
+        ...state.nodes,
+        {
+          id: 'end',
+          position: { x: 0, y: 0 },
+          type: 'end',
+          data: {} as FormBuilderBlock,
+          selectable: false,
+        },
+      ];
+
+      set({
+        nodes: getDefaultLayout(nodes),
+        edges: state.edges || getDefaultEdges(nodes),
+      });
     },
     addNode: (node) => {
       set({
@@ -73,3 +119,4 @@ export const createStore = (initialState: FormBuilderState = DEFAULT_STATE) =>
       set({ nodes });
     },
   }));
+};

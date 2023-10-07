@@ -35,6 +35,6 @@
 
 .workflow-block__step--complete .workflow-block__step-icon.success,
 .workflow-block__step--error .workflow-block__step-icon.error,
-.workflow-block__step--progress .workflow-block__step-icon.loader {
+.workflow-block__step--progress .workflow-block__step-icon.progress {
   display: block;
 }

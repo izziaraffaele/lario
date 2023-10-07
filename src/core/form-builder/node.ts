@@ -9,10 +9,11 @@ export const getDefaultLayout = (nodes: Node[]) => {
   return nodes.reduce((carry, item) => {
     const itemPosition = !prevNode
       ? DEFAULT_POSITION
-      : { x: prevNode.position.x + 120, y: prevNode.position.y };
+      : { x: prevNode.position.x + 300, y: prevNode.position.y };
 
-    carry.push({ ...item, position: itemPosition });
-    prevNode = item;
+    prevNode = { ...item, position: itemPosition };
+    carry.push(prevNode);
+
     return carry;
   }, [] as Node[]);
 };

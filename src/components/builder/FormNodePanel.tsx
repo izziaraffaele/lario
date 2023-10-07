@@ -1,5 +1,5 @@
 import { useForm, Controller } from 'react-hook-form';
-import { useFormBuilderStore } from '@/hooks/useFormBuiler';
+import { useFormBuilderStore } from '@/hooks/useFormBuilder';
 import { FormProvider } from '@/components/form';
 
 import { Button, Stack, TextField } from '@mui/material';

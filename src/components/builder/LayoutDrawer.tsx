@@ -1,5 +1,5 @@
 import { FormBuilderStore } from '@/core/form-builder';
-import { useFormBuilderStore } from '@/hooks/useFormBuiler';
+import { useFormBuilderStore } from '@/hooks/useFormBuilder';
 import { Box, ListItemText, Paper, PaperProps, Stack } from '@mui/material';
 import { styled } from '@mui/material/styles';
 import React, { useMemo } from 'react';

@@ -1,25 +1,39 @@
 'use client';
 
-// mui
-import { styled } from '@mui/material/styles';
 // components
 import { LayoutHeader } from '@/components/builder';
-
-const RootStyle = styled('div')({
-  display: 'flex',
-  flexDirection: 'column',
-  width: '100vw',
-  height: '100vh',
-  '& main': {
-    height: '100%',
-  },
-});
+import { useParams } from 'next/navigation';
+import { Box, CircularProgress } from '@mui/material';
+import { useFormAttestation } from '@/hooks/useFormAttestation';
+import { useEffect } from 'react';
+import { useFormBuilderStore } from '@/hooks/useFormBuilder';
+import { fromAttestation } from '@/core/form-builder';
 
 export default function BuilderLayout({ children }: React.PropsWithChildren) {
+  const params = useParams<{ formId: string }>();
+  const { reset } = useFormBuilderStore();
+  const { data: attestation, isLoading } = useFormAttestation(params.formId);
+
+  useEffect(() => {
+    if (attestation) {
+      reset(fromAttestation(attestation));
+    }
+  }, [attestation]); // eslint-disable-line
+
   return (
-    <RootStyle>
+    <Box
+      sx={{
+        display: 'flex',
+        flexDirection: 'column',
+        width: '100vw',
+        height: '100vh',
+        '& main': {
+          height: '100%',
+        },
+      }}
+    >
       <LayoutHeader />
-      {children}
-    </RootStyle>
+      {isLoading ? <CircularProgress /> : children}
+    </Box>
   );
 }
