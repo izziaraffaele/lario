@@ -1,7 +1,7 @@
 import { styled } from '@mui/material/styles';
 import { Icon } from '../Icon';
 import { Stack } from '@mui/material';
-import { builderTypes } from '.';
+import { nodeTypes } from '@/utils/nodeTypes';
 
 const RootStyle = styled('div')(({ theme }) => ({
   height: '100%',
@@ -45,14 +45,14 @@ export function LayoutSidebar() {
   return (
     <RootStyle>
       <Stack direction="column" spacing={1} px={1}>
-        {builderTypes.map(({ nodeType, icon }) => (
+        {nodeTypes.map((nodeType) => (
           <SidebarItem
             key={nodeType.key}
             onDragStart={handleDragStart(nodeType.key)}
             draggable
           >
             <Tool>
-              {typeof icon === 'string' ? <Icon icon={icon} /> : icon}
+              <Icon icon={nodeType.icon} />
             </Tool>
           </SidebarItem>
         ))}

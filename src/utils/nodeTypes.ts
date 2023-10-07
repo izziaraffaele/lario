@@ -1,13 +1,44 @@
-import { BuilderType } from '@/components/builder';
-import { NodeTypes } from 'reactflow';
+import { makeNodeType } from '@/core/form-builder';
 
-export function fromBuilderTypes(builderTypes: BuilderType[]) {
-  return builderTypes.reduce((carry, item) => {
-    carry[item.nodeType.key] = item.components.node;
-    return carry;
-  }, {} as NodeTypes);
-}
+const welcomeScreen = makeNodeType('welcome-screen', 'octicon:home-16', {
+  attributes: {
+    label: 'Welcome',
+    attachment: {
+      type: 'image',
+      url: 'https://quillforms.com/wp-content/uploads/2022/01/4207-ai-1.jpeg',
+    },
+    attachmentMaxWidth: '300px',
+  },
+});
 
-export function getByBuilderType(builderTypes: BuilderType[], lookup: string) {
-  return builderTypes.find((item) => item.nodeType.key === lookup)?.nodeType;
-}
+const connectWallet = makeNodeType('connect-wallet', 'ion:wallet-outline', {
+  attributes: {
+    label: 'Connect Wallet',
+  },
+});
+
+const web3Gate = makeNodeType('web3-gate', 'octicon:shield-lock-16', {
+  attributes: {
+    label: 'Web3 gate',
+  },
+});
+
+const shortText = makeNodeType('short-text', 'octicon:typography-16', {
+  attributes: {
+    label: 'Short text',
+  },
+});
+
+const date = makeNodeType('date', 'octicon:calendar-16', {
+  attributes: {
+    label: 'Date',
+  },
+});
+
+export const nodeTypes = [
+  welcomeScreen,
+  connectWallet,
+  web3Gate,
+  shortText,
+  date,
+];

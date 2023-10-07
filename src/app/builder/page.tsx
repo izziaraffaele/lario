@@ -7,20 +7,25 @@ import ReactFlow, {
   NodeTypes,
   useReactFlow,
 } from 'reactflow';
-import { StartNode, EndNode, builderTypes } from '@/components/builder';
+import { StartNode, EndNode } from '@/components/builder';
 import { useFormBuilderStore } from '@/hooks/useFormBuiler';
-import { fromBuilderTypes, getByBuilderType } from '@/utils/nodeTypes';
+import { nodeTypes as builderTypes } from '@/utils/nodeTypes';
+import { FormNodeItem } from '@/components/builder/FormNodeItem';
+import { useSearchParams } from 'next/navigation';
 
 const nodeTypes: NodeTypes = {
   start: StartNode,
   end: EndNode,
-  ...fromBuilderTypes(builderTypes),
+  ...builderTypes.reduce((carry, nodeType) => {
+    carry[nodeType.key] = FormNodeItem;
+    return carry;
+  }, {} as NodeTypes),
 };
 
 let nodeId = 0;
 const getNodeId = () => `node-${nodeId++}`;
 
-export default function BuilderPage() {
+function BuildTab() {
   const { nodes, edges, onNodesChange, onEdgesChange, onConnect, addNode } =
     useFormBuilderStore();
 
@@ -43,7 +48,7 @@ export default function BuilderPage() {
         };
 
       const type = event.dataTransfer.getData('application/reactflow');
-      const nodeType = getByBuilderType(builderTypes, type);
+      const nodeType = builderTypes.find((n) => n.key === type);
 
       // check if the dropped element is valid
       if (!nodeType) {
@@ -89,4 +94,13 @@ export default function BuilderPage() {
       </ReactFlow>
     </div>
   );
+}
+
+function PreviewTab() {
+  return null;
+}
+
+export default function BuilderPate() {
+  const searchParams = useSearchParams();
+  return searchParams.get('tab') === 'preview' ? <PreviewTab /> : <BuildTab />;
 }

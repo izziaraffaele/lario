@@ -16,6 +16,7 @@ export function FormNodeItem({
   data,
   icon = DEFAULT_ICON,
 }: FormNodeItemProps) {
+  console.log(data);
   return (
     <>
       <Handle

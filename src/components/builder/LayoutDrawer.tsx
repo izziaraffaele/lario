@@ -1,16 +1,10 @@
 import { FormBuilderStore } from '@/core/form-builder';
 import { useFormBuilderStore } from '@/hooks/useFormBuiler';
-import {
-  Box,
-  CardHeader,
-  ListItemText,
-  Paper,
-  PaperProps,
-  Typography,
-} from '@mui/material';
+import { Box, ListItemText, Paper, PaperProps } from '@mui/material';
 import { styled } from '@mui/material/styles';
 import React, { useMemo } from 'react';
-import { FormNodePanelProps, builderTypes } from '.';
+import { FormNodePanel } from './FormNodePanel';
+import { nodeTypes } from '@/utils/nodeTypes';
 
 const DRAWER_WIDTH = 300;
 
@@ -32,15 +26,12 @@ const selector = (s: FormBuilderStore) => ({
   selectedNode: s.nodes.find((n) => n.selected),
 });
 
-export function LayoutDrawer({ children }: React.PropsWithChildren) {
+export function LayoutDrawer() {
   const { selectedNode } = useFormBuilderStore(selector);
-  const builderType = useMemo(
-    () => builderTypes.find((type) => type.nodeType.key === selectedNode?.type),
+  const nodeType = useMemo(
+    () => nodeTypes.find((nodeType) => nodeType.key === selectedNode?.type),
     [selectedNode]
   );
-
-  const PanelComponent = builderType?.components
-    .panel as React.FC<FormNodePanelProps>;
 
   return (
     <StyleRoot elevation={16} open={Boolean(selectedNode)}>
@@ -48,13 +39,13 @@ export function LayoutDrawer({ children }: React.PropsWithChildren) {
         <>
           <Box px={3} pt={2} pb={0}>
             <ListItemText
-              primary={builderType?.nodeType.label}
+              primary={nodeType?.label}
               primaryTypographyProps={{ variant: 'h6' }}
-              secondary={builderType?.nodeType.description}
+              secondary={nodeType?.description}
             />
           </Box>
           <Box px={3} py={2}>
-            <PanelComponent
+            <FormNodePanel
               key={selectedNode.id}
               data={selectedNode.data}
               id={selectedNode.id}

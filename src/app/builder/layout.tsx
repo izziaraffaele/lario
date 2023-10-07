@@ -1,6 +1,5 @@
 'use client';
 
-import { useRef } from 'react';
 // reactflow
 import { ReactFlowProvider } from 'reactflow';
 import 'reactflow/dist/style.css';
@@ -25,17 +24,16 @@ const RootStyle = styled('div')({
 });
 
 export default function BuilderLayout({ children }: React.PropsWithChildren) {
-  const mainRef = useRef(null);
   return (
     <ReactFlowProvider>
       <RootStyle>
         <LayoutHeader />
-        <Stack direction="row" position="relative" flex={1} ref={mainRef}>
+        <Stack direction="row" position="relative" flex={1}>
           <LayoutSidebar />
           <Box component="main" flex={1}>
             {children}
           </Box>
-          <LayoutDrawer>content</LayoutDrawer>
+          <LayoutDrawer />
         </Stack>
       </RootStyle>
     </ReactFlowProvider>

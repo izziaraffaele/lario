@@ -27,7 +27,7 @@ export type FormBuilderAction = {
   addNode(node: FormNode): void;
   fromBlocks(blocks: FormBuilderBlock[]): void;
   reset: (s: FormBuilderState) => void;
-  updateBlock: (id: string, attributes: FormBuilderBlock['attributes']) => void;
+  updateNode: (id: string, attributes: FormBuilderBlock['attributes']) => void;
 };
 
 export type FormBuilderStore = FormBuilderState & FormBuilderAction;
@@ -35,6 +35,7 @@ export type FormBuilderStore = FormBuilderState & FormBuilderAction;
 export type FormNodeType<T extends FormBlock = FormBlock> = {
   key: string;
   label: string;
+  icon: string;
   description?: string;
   create: (
     id: string,

@@ -66,11 +66,10 @@ export const createStore = (initialState: FormBuilderState = DEFAULT_STATE) =>
         edges: getDefaultEdges(nodes),
       });
     },
-    updateBlock: (id, attributes) => {
+    updateNode: (id, attributes) => {
       const nodes = [...get().nodes];
       const nodeIndex = nodes.findIndex((n) => n.id === id);
       nodes[nodeIndex].data.attributes = attributes;
-
       set({ nodes });
     },
   }));

@@ -21,8 +21,4 @@ export type FormNodePanelProps<T extends FormNode = FormNode> = Pick<
 export type BuilderType<T extends FormNodeType<any> = FormNodeType> = {
   nodeType: T;
   icon: string | React.ReactNode;
-  components: {
-    panel: React.FC<FormNodePanelProps>;
-    node: React.FC<FormNodeProps>;
-  };
 };
