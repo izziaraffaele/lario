@@ -15,5 +15,9 @@ export function useFormAttestation(attestationId: string) {
     eas.connect(provider);
   }, [eas]);
 
-  return useSWR(attestationId, () => eas.getAttestation(attestationId));
+  return useSWR(attestationId, () =>
+    attestationId && attestationId.startsWith('0x')
+      ? eas.getAttestation(attestationId)
+      : null
+  );
 }

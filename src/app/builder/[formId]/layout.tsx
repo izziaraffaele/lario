@@ -8,6 +8,7 @@ import { useFormAttestation } from '@/hooks/useFormAttestation';
 import { useEffect } from 'react';
 import { useFormBuilderStore } from '@/hooks/useFormBuilder';
 import { fromAttestation } from '@/core/form-builder';
+import { PageHeader } from '@/components/PageHeader';
 
 export default function BuilderLayout({ children }: React.PropsWithChildren) {
   const params = useParams<{ formId: string }>();
@@ -15,8 +16,11 @@ export default function BuilderLayout({ children }: React.PropsWithChildren) {
   const { data: attestation, isLoading } = useFormAttestation(params.formId);
 
   useEffect(() => {
-    if (attestation) {
-      reset(fromAttestation(attestation));
+    if (attestation !== undefined) {
+      console.log('reset');
+      reset(
+        attestation ? fromAttestation(attestation) : { nodes: [], edges: [] }
+      );
     }
   }, [attestation]); // eslint-disable-line
 

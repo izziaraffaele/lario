@@ -92,7 +92,7 @@ export function WorkflowBlock(props: WorkflowBlockProps) {
               <Icon
                 icon="fluent-mdl2:error"
                 className={classnames('workflow-block__step-icon', 'error')}
-                color={theme.errorsBgColor}
+                color={theme.errorsFontColor}
               />
             </li>
           );

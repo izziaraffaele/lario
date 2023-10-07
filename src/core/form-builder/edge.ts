@@ -25,9 +25,10 @@ export const getDefaultEdges = (nodes: FormNode[]) => {
         target: current.id,
       };
 
-      const edgeId = getEdgeId(connection);
-
-      edges.push({ ...connection, id: edgeId });
+      if (connection.source !== 'start' || connection.target !== 'end') {
+        const edgeId = getEdgeId(connection);
+        edges.push({ ...connection, id: edgeId });
+      }
     }
 
     return current;

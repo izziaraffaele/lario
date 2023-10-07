@@ -1,11 +1,12 @@
 import { useEffect } from 'react';
 import { useTheme } from '@quillforms/renderer-core';
-import { useAccount } from 'wagmi';
+import { useAccount, useEnsName } from 'wagmi';
 import { ConnectButton } from '@rainbow-me/rainbowkit';
 
 import { BlockTypeDisplayProps } from '../types';
+import { LinearProgress } from '@mui/material';
 
-export  function ConnectWalletBlock(props: BlockTypeDisplayProps) {
+export function ConnectWalletBlock(props: BlockTypeDisplayProps) {
   const theme = useTheme();
 
   const {
@@ -19,6 +20,7 @@ export  function ConnectWalletBlock(props: BlockTypeDisplayProps) {
   } = props;
 
   const { isConnected, address } = useAccount();
+  const { data, isFetched } = useEnsName({ address, chainId: 1 });
 
   useEffect(() => {
     if (!address) {
@@ -37,9 +39,13 @@ export  function ConnectWalletBlock(props: BlockTypeDisplayProps) {
     }
   }, [address]);
 
-  return !isConnected ? (
-    <ConnectButton />
-  ) : (
-    <div style={{ color: theme.answersColor }}>Connected with {address}</div>
+  if (!isConnected) return <ConnectButton />;
+
+  if (!isFetched) return <LinearProgress />;
+
+  return (
+    <div style={{ color: theme.answersColor }}>
+      Connected with {data || address}
+    </div>
   );
 }

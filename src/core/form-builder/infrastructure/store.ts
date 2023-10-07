@@ -45,7 +45,7 @@ export const createStore = (initialState: FormBuilderState = DEFAULT_STATE) => {
 
   return create<FormBuilderStore>((set, get) => ({
     nodes: getDefaultLayout(nodes),
-    edges: initialState.edges || getDefaultEdges(nodes),
+    edges: initialState.edges,
     onNodesChange: (changes) => {
       let nodes = get().nodes;
 
@@ -89,7 +89,7 @@ export const createStore = (initialState: FormBuilderState = DEFAULT_STATE) => {
 
       set({
         nodes: getDefaultLayout(nodes),
-        edges: state.edges || getDefaultEdges(nodes),
+        edges: getDefaultEdges(nodes),
       });
     },
     addNode: (node) => {
