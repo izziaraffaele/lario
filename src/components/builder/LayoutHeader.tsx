@@ -14,6 +14,8 @@ import { Icon } from '../Icon';
 // ----------------------------------------------------------------------
 
 const RootStyle = styled(Toolbar)(({ theme }) => ({
+  paddingLeft: '16px !important',
+  paddingRight: '16px !important',
   width: '100%',
   display: 'flex',
   boxShadow: 'none',
@@ -33,7 +35,6 @@ const RootStyle = styled(Toolbar)(({ theme }) => ({
 export function LayoutHeader() {
   const params = useParams<{ formId: string }>();
   const pathname = usePathname();
-  const searchParams = useSearchParams();
   const router = useRouter();
   const tab = pathname.split('/').pop();
 
