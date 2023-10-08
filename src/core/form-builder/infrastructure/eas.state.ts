@@ -3,7 +3,7 @@ import {
   SchemaEncoder,
 } from '@ethereum-attestation-service/eas-sdk';
 import { FormNode } from '../types';
-import { getDefaultEdges } from '../edge';
+import { getDefaultEdges, getTreeEdges } from '../edge';
 import { getDefaultLayout, makeNode } from '../node';
 import { fromHex } from 'viem';
 import { FormBlock } from '@quillforms/types';
@@ -23,6 +23,7 @@ type JSONArray = Array<JSONValue>;
 type AttestationNode = {
   id: string;
   type: string;
+  parentNode?: string;
   attributes: JSONObject;
 };
 
@@ -37,13 +38,15 @@ export function getAttestationBlocks(
 }
 
 export function fromAttestation(attestation: Attestation) {
-  const nodes: FormNode[] = getAttestationBlocks(attestation).map((block) =>
-    makeNode(block.type, block.id, {
+  const nodes: FormNode[] = getAttestationBlocks(attestation).map((block) => {
+    const node = makeNode(block.type, block.id, {
       id: block.id,
       name: block.type,
       attributes: block.attributes as FormBlock['attributes'],
-    })
-  );
+    });
+    node.parentNode = block.parentNode;
+    return node;
+  });
 
-  return { nodes: getDefaultLayout(nodes), edges: getDefaultEdges(nodes) };
+  return { nodes: getDefaultLayout(nodes), edges: getTreeEdges(nodes) };
 }

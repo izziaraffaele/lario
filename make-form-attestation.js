@@ -28,45 +28,28 @@ const attributes = [
       label: 'Verify reputation',
       workflow: [
         {
-          type: 'token-ownership',
-          label: 'NFT holder',
-          params: { type: 'nft', token: '', tokenId: '' },
+          type: 'verifyEnsOwnership',
+          label: 'ENS name holder',
+          params: {},
         },
         {
-          type: 'token-ownership',
+          type: 'verifyTokenOwnership',
           label: 'ERC20 holder',
           params: { type: 'token', token: '' },
         },
         {
-          type: 'poap-ownership',
+          type: 'verifyTokenOwnership',
           label: 'ETHRome POAP holder',
-          params: { tokenId: '' },
+          params: { type: 'poap', token: '' },
         },
       ],
     },
   },
   {
     id: 'comment',
-    type: 'workflow',
+    type: 'long-text',
     attributes: {
-      label: 'Verify reputation',
-      workflow: [
-        {
-          type: 'token-ownership',
-          label: 'NFT holder',
-          params: { type: 'nft', address: '' },
-        },
-        {
-          type: 'token-ownership',
-          label: 'ERC20 holder',
-          params: { type: 'token', address: '' },
-        },
-        {
-          type: 'poap-ownership',
-          label: 'ETHRome POAP holder',
-          params: {},
-        },
-      ],
+      label: 'Comment',
     },
   },
 ].map(

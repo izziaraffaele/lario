@@ -2,7 +2,13 @@ import { useForm, Controller } from 'react-hook-form';
 import { useFormBuilderStore } from '@/hooks/useFormBuilder';
 import { FormProvider } from '@/components/form';
 
-import { Button, Stack, TextField } from '@mui/material';
+import {
+  Button,
+  FormControlLabel,
+  Stack,
+  Switch,
+  TextField,
+} from '@mui/material';
 import { styled } from '@mui/material/styles';
 import { FormNode } from '@/core/form-builder';
 import { WorkflowStepBuilder } from '../WorkflowStepBuilder';
@@ -11,6 +17,7 @@ type FormValuesProps = {
   label: string;
   description?: string;
   workflow?: string;
+  required?: boolean;
 };
 
 export type FormNodePanelProps<T extends FormNode = FormNode> = Pick<
@@ -30,6 +37,7 @@ export function FormNodePanel({
     defaultValues: {
       label: data.attributes?.label || '',
       description: data.attributes?.description || '',
+      required: data.attributes?.required || false,
     },
   });
 
@@ -56,6 +64,17 @@ export function FormNodePanel({
           control={methods.control}
           render={({ field }) => (
             <TextField label="Description" multiline rows={3} {...field} />
+          )}
+        />
+
+        <Controller
+          name="required"
+          control={methods.control}
+          render={({ field }) => (
+            <FormControlLabel
+              control={<Switch {...field} checked={Boolean(field.value)} />}
+              label="Required"
+            />
           )}
         />
 

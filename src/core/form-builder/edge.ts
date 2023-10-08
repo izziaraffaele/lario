@@ -36,3 +36,29 @@ export const getDefaultEdges = (nodes: FormNode[]) => {
 
   return edges;
 };
+
+export const getTreeEdges = (nodes: FormNode[]) => {
+  const edges: FormEdge[] = [];
+
+  for (let i = 0; i < nodes.length; i++) {
+    const item = nodes[i];
+
+    // Determine the sourceId for the edge
+    let sourceId = item.parentNode;
+    if (!sourceId && i > 0) {
+      // If no parentId, and it's not the first item, use the previous node as the source
+      sourceId = nodes[i - 1].id;
+    }
+
+    // If we have a valid sourceId, add to edges
+    if (sourceId) {
+      const connection = { source: sourceId, target: item.id };
+      edges.push({
+        ...connection,
+        id: getEdgeId(connection),
+      });
+    }
+  }
+
+  return edges;
+};

@@ -4,7 +4,8 @@ import { Stack } from '@mui/material';
 import { nodeTypes } from '@/utils/nodeTypes';
 
 const RootStyle = styled('div')(({ theme }) => ({
-  height: '100%',
+  height: 'calc(100vh - 64px)',
+  overflow: 'scroll',
   borderRight: `1px solid ${theme.palette.grey[200]}`,
 
   transition: theme.transitions.create('top', {

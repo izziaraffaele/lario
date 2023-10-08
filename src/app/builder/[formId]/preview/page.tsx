@@ -59,10 +59,10 @@ export default function BuilderPreviewPage() {
         const steps: StepArray = workflowStepDefinition.map((def) =>
           makeStep({
             label: def.label,
-            func: boolStepHandler((ctx) =>
-              verifyWeb3WorkflowStep(def.type as any, ctx, def.attributes)
-            ),
-            // func: mockedFunc,
+            // func: boolStepHandler((ctx) =>
+            //   verifyWeb3WorkflowStep(def.type as any, ctx, def.attributes)
+            // ),
+            func: mockedFunc,
           })
         );
 

@@ -8,13 +8,17 @@ import { useFormAttestation } from '@/hooks/useFormAttestation';
 import { useEffect } from 'react';
 import { useFormBuilderStore } from '@/hooks/useFormBuilder';
 import { fromAttestation } from '@/core/form-builder';
-import { PageHeader } from '@/components/PageHeader';
 
 export default function BuilderLayout({ children }: React.PropsWithChildren) {
   const params = useParams<{ formId: string }>();
   const { reset } = useFormBuilderStore();
-  const { data: attestation, isLoading } = useFormAttestation(params.formId);
-
+  const {
+    data: attestation,
+    isLoading,
+    error,
+    isValidating,
+  } = useFormAttestation(params.formId);
+  console.log(isValidating, error, isLoading, attestation);
   useEffect(() => {
     if (attestation !== undefined) {
       console.log('reset');

@@ -2,6 +2,7 @@ import { Handle, Position } from 'reactflow';
 import { Icon } from '../Icon';
 import { FormNodeTypeItem } from './FormNodeTypeItem';
 import { FormNodeProps } from './types';
+import { nodeTypes } from '@/utils/nodeTypes';
 
 export type FormNodeItemProps = FormNodeProps;
 
@@ -11,11 +12,8 @@ export const withDefaults =
   (defaultProps: Partial<FormNodeItemProps>) => (props: FormNodeItemProps) =>
     <FormNodeItem {...defaultProps} {...props} />;
 
-export function FormNodeItem({
-  type,
-  data,
-  icon = DEFAULT_ICON,
-}: FormNodeItemProps) {
+export function FormNodeItem({ type, data }: FormNodeItemProps) {
+  const nodeType = nodeTypes.find((n) => n.key === type);
   return (
     <>
       <Handle
@@ -27,7 +25,7 @@ export function FormNodeItem({
       <FormNodeTypeItem
         type={type}
         label={data.attributes?.label || ''}
-        icon={icon}
+        icon={nodeType?.icon || DEFAULT_ICON}
       />
       <Handle
         type="source"

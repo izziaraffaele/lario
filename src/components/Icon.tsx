@@ -1,3 +1,5 @@
+'use client';
+
 // icons
 import { Icon as Iconify, IconifyIcon } from '@iconify/react';
 // @mui

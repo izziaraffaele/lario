@@ -19,6 +19,7 @@ export default function CssBaseline(theme: Theme) {
         body: {
           width: '100%',
           height: '100%',
+          backgroundColor: 'rgb(248, 246, 241)',
         },
         '#__next': {
           width: '100%',
