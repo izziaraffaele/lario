@@ -31,7 +31,7 @@ export function MintNFTBlock(props: BlockTypeDisplayProps) {
       setIsValid(false);
       setValidationErr('The field is required!');
     }
-  }, []);
+  }, []); // eslint-disable-line
 
   return (
     <div style={{ color: theme.answersColor }}>

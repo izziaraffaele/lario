@@ -37,7 +37,7 @@ export function ConnectWalletBlock(props: BlockTypeDisplayProps) {
       setIsValid(true);
       showErrMsg(false);
     }
-  }, [address]);
+  }, [address]); // eslint-disable-line
 
   if (!isConnected) return <ConnectButton />;
 
