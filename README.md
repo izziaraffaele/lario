@@ -17,7 +17,10 @@ Onchain ad offchain attestations provide transparent and verifiable data records
 ### Deployments
 
 **Form attestation schema**
-_Base Goerli: 0x42f0c15d35e3a6560d0bac12f25a472db13ab169f4ee7528cb56b624da48e100_
+_Base Goerli: [0x42f0c15d35e3a6560d0bac12f25a472db13ab169f4ee7528cb56b624da48e100](https://base-goerli.easscan.org/schema/view/0x42f0c15d35e3a6560d0bac12f25a472db13ab169f4ee7528cb56b624da48e100)_
 
 **Basic form attestation**
-_Base Goerli: 0xaa8ed4b6ad1ad5a52fe365b6591ed1813cc2778d13260ad41331990d7ab03d88_
+_Base Goerli: [0xaa8ed4b6ad1ad5a52fe365b6591ed1813cc2778d13260ad41331990d7ab03d88](https://base-goerli.easscan.org/attestation/view/0xaa8ed4b6ad1ad5a52fe365b6591ed1813cc2778d13260ad41331990d7ab03d88)_
+
+**Test NFT Contract**
+_Gnosis Chiado: [0x67A6ef2A558330dA5af1C199Ff73Fa43820BFb6c](https://gnosis-chiado.blockscout.com/address/0x67A6ef2A558330dA5af1C199Ff73Fa43820BFb6c)_
