@@ -1,45 +1,23 @@
-# Material UI - Next.js App Router example in TypeScript
+# Lario
 
-This is a [Next.js](https://nextjs.org/) project bootstrapped using [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app) with Material UI installed.
+Lario is the Data Collection layer for Decentralized Organizazions
 
-## How to use
+**Data collection flows simplified**
 
-Download the example [or clone the repo](https://github.com/mui/material-ui):
+With Lario's intuitive visual form builder, create everything from simple application forms for your upcoming DAO initiatives to intricate onboarding processes for new members. Seamlessly verify on-chain activities and issue credentials directly on the blockchain.
 
-<!-- #default-branch-switch -->
+**Clear and discoverable data collection requirements**
 
-```bash
-curl https://codeload.github.com/mui/material-ui/tar.gz/master | tar -xz --strip=2  material-ui-master/examples/material-ui-nextjs-ts
-cd material-ui-nextjs-ts
-```
+Lario enables DAOs to publish form schemas as an onchain attestation using EAS. This provides clarity on what data is needed for reporting and survey, offers a tamper-proof record of these requirements, and ensures that any changes or updates are transparently logged on the blockchain and subject to the DAO governance procedures.
 
-Install it and run:
+**Streamlined Governance and decision making**
 
-```bash
-npm install
-npm run dev
-```
+Onchain ad offchain attestations provide transparent and verifiable data records, assisting DAOs in making informed decisions based on the insights derived from the data. With Lario governance actions are rooted in evidence and the genuine needs and feedback of the community without compromising privacy.
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+### Deployments
 
-or:
+**Form attestation schema**
+_Base Goerli: 0x42f0c15d35e3a6560d0bac12f25a472db13ab169f4ee7528cb56b624da48e100_
 
-<!-- #default-branch-switch -->
-
-[![Edit on StackBlitz](https://developer.stackblitz.com/img/open_in_stackblitz.svg)](https://stackblitz.com/github/mui/material-ui/tree/master/examples/material-ui-nextjs-ts)
-
-[![Edit on CodeSandbox](https://codesandbox.io/static/img/play-codesandbox.svg)](https://codesandbox.io/s/github/mui/material-ui/tree/master/examples/material-ui-nextjs-ts)
-
-## Learn more
-
-To learn more about this example:
-
-- [Next.js documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Customizing Material UI](https://mui.com/material-ui/customization/how-to-customize/) - approaches to customizing Material UI.
-
-## What's next?
-
-<!-- #default-branch-switch -->
-
-You now have a working example project.
-You can head back to the documentation and continue by browsing the [templates](https://mui.com/material-ui/getting-started/templates/) section.
+**Basic form attestation**
+_Base Goerli: 0xaa8ed4b6ad1ad5a52fe365b6591ed1813cc2778d13260ad41331990d7ab03d88_
