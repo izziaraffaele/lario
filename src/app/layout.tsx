@@ -2,8 +2,8 @@ import ThemeRegistry from '@/components/ThemeRegistry';
 import { WalletProvider } from '@/components/WalletProvider';
 
 export const metadata = {
-  title: 'Next.js App Router + Material UI v5',
-  description: 'Next.js App Router + Material UI v5',
+  title: 'Lario',
+  description: 'The Data Collection layer for Decentralized Organizations',
 };
 
 export default function RootLayout({ children }: React.PropsWithChildren) {
