@@ -14,6 +14,13 @@ Lario enables DAOs to publish form schemas as an onchain attestation using EAS. 
 
 Onchain ad offchain attestations provide transparent and verifiable data records, assisting DAOs in making informed decisions based on the insights derived from the data. With Lario governance actions are rooted in evidence and the genuine needs and feedback of the community without compromising privacy.
 
+## Demo
+
+This is an hackathon project and only some parts of the application are fully functional. Only the form editor and the basic form example shown in the video can be considered "working"
+
+[Video](https://www.loom.com/share/29dff51da6c74d4c945fa73c12e82cdf?sid=f025b688-0892-486d-8932-0f7e14a502b4)
+[Webapp](https://lario.vercel.app/)
+
 ### Deployments
 
 **Form attestation schema**
